@@ -1,0 +1,3 @@
+[submodule "my-app-backend"]
+	path = my-app-backend
+	url = git@github.com:Succorro/my-app-backend.git
