@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// import Cart from "./store/Cart.js";
 
 function Navigation() {
   return (
-    <nav>
+    <nav className="nav" aria-label="breadcrumb">
       <ul>
         <li>
           <Link to="/">Home</Link>
