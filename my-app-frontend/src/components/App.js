@@ -1,5 +1,6 @@
 // import "./App.css";
 import "@picocss/pico";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./Navigation";
 import Home from "./Home.js";
@@ -8,6 +9,17 @@ import Shop from "../container/Shop";
 import Cart from "../container/Cart";
 
 function App() {
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    try {
+      fetch("http://localhost:")
+        .then((r) => r.json())
+        .then((data) => setItems(data));
+    } catch (error) {
+      alert(error);
+    }
+  }, []);
+
   return (
     <div className="App">
       <Navigation />
@@ -17,7 +29,7 @@ function App() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/shop" element={<Shop />} />
+        <Route path="/shop" element={<Shop items={items} />} />
       </Routes>
     </div>
   );
