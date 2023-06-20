@@ -12,14 +12,14 @@ function App() {
   const [items, setItems] = useState([]);
   useEffect(() => {
     try {
-      fetch("http://localhost:")
+      fetch("http://localhost:9090/categories")
         .then((r) => r.json())
         .then((data) => setItems(data));
     } catch (error) {
       alert(error);
     }
   }, []);
-
+  console.log(items);
   return (
     <div className="App">
       <Navigation />

@@ -1,11 +1,14 @@
 import React from "react";
 
-function ItemCards() {
+function ItemCards({ item }) {
+  const { name, image_url } = item;
   return (
     <div className="characterCard">
-      <img src={{}} alt={``} />
-      <h5>{}</h5>
-      <ul></ul>
+      <img src={{ image_url }} alt={`type of hat`} />
+
+      <li style={{ listStyleType: "none" }}>
+        <h3>{name}</h3>
+      </li>
     </div>
   );
 }
