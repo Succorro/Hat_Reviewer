@@ -5,12 +5,7 @@ function Products({ products }) {
   const displayItems = products.map((item) => {
     return <ItemCards key={item.id} item={item} />;
   });
-  return (
-    <>
-      <h3 style={{ color: "blue" }}>Products</h3>
-      {displayItems}
-    </>
-  );
+  return <>{displayItems}</>;
 }
 
 export default Products;

@@ -1,19 +1,21 @@
 import React from "react";
 
 function ItemCards({ item }) {
-  const { name, image_url } = item;
-  // console.log(products);
+  const { name, image_url, desc, color, price } = item;
+  function handleClick() {
+    console.log("hi");
+  }
   return (
     <div className="characterCard">
-      {image_url ? null : <img src={{ image_url }} alt={`type of hat`} />}
+      {image_url ? null : <img src={{ image_url }} alt={`product hat`} />}
 
       <li style={{ listStyleType: "none" }}>
         <h5>{name}</h5>
-        {/* <h4>
-          {products.map((product) => {
-            return <p>{product.name}</p>;
-          })}
-        </h4> */}
+        <p>{desc}</p>
+        <p>{color}</p>${price}
+        <button type="button" onClick={handleClick}>
+          Add to Cart
+        </button>
       </li>
     </div>
   );
