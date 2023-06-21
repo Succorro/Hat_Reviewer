@@ -1,15 +1,13 @@
 import React from "react";
 import ItemCards from "./ItemCards";
 
-function Products({ items }) {
-  const products = items.map((item) => item);
-  console.log(products[0], products[1], products[2]);
-  const displayItems = items.map((item) => {
+function Products({ products }) {
+  const displayItems = products.map((item) => {
     return <ItemCards key={item.id} item={item} />;
   });
   return (
     <>
-      <h1>Products</h1>
+      <h3 style={{ color: "blue" }}>Products</h3>
       {displayItems}
     </>
   );
