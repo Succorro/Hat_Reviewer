@@ -1,11 +1,14 @@
-import React from "react";
-import ItemCards from "../components/shop-items/ItemCards";
+import React, { useState, useEffect } from "react";
+import Category from "../components/shop-items/Category";
+import Products from "../components/shop-items/Products";
 
 function Shop({ items }) {
-  const displayItems = items.map((item) => {
-    return <ItemCards key={item.id} item={item} />;
-  });
-  return <>{displayItems}</>;
+  return (
+    <>
+      <Category items={items} />
+      <Products items={items} />
+    </>
+  );
 }
 
 export default Shop;

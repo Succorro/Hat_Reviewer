@@ -7,6 +7,8 @@ import Home from "./Home.js";
 import About from "./About";
 import Shop from "../container/Shop";
 import Cart from "../container/Cart";
+import Category from "./shop-items/Category";
+import Products from "./shop-items/Products";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -20,6 +22,7 @@ function App() {
     }
   }, []);
   console.log(items);
+
   return (
     <div className="App">
       <Navigation />
@@ -29,7 +32,10 @@ function App() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/shop" element={<Shop items={items} />} />
+        <Route path="/shop" element={<Shop items={items} />}>
+          <Route path="/shop/category" element={<Category />} />
+          <Route path="/shop/products" element={<Products />} />
+        </Route>
       </Routes>
     </div>
   );
