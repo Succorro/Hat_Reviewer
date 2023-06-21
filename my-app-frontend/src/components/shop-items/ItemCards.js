@@ -5,9 +5,10 @@ function ItemCards({ item }) {
   function handleClick() {
     console.log("hi");
   }
+  console.log(image_url);
   return (
     <div className="card">
-      <img src={{ image_url }} alt={`product hat`} />
+      <img src={image_url} alt={`product hat`} style={{ maxWidth: "300px" }} />
       <h5>{name}</h5>
       <p>{desc}</p>
       <p>{color}</p>${price}
