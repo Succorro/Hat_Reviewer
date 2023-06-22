@@ -33,14 +33,16 @@ function App() {
   function onAddProduct(newProduct) {
     setCartProducts((productsArray) => [...productsArray, newProduct]);
   }
-  // function onRemoveProduct(){
-
-  // }
+  function onRemoveProduct(deletedProduct) {
+    setCartProducts((productsArray) =>
+      productsArray.filter((product) => product.id !== deletedProduct.id)
+    );
+  }
   return (
     <div className="App">
       <Navigation />
       <aside>
-        <Cart products={cartProducts} />
+        <Cart products={cartProducts} onRemoveProduct={onRemoveProduct} />
       </aside>
       <Routes>
         <Route index element={<Home />} />

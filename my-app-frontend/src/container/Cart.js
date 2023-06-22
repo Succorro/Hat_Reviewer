@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CartItems from "../components/cart-items/CartItems";
 
-function Cart({ products }) {
+function Cart({ products, onRemoveProduct }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const total = 0;
 
@@ -15,6 +15,7 @@ function Cart({ products }) {
         key={product.id}
         product={product}
         handleUpdate={handleUpdate}
+        onRemoveProduct={onRemoveProduct}
       />
     );
   });

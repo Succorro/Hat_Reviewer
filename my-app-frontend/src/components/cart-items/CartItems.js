@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function CartItems({ product, handleUpdate }) {
+function CartItems({ product, handleUpdate, onRemoveProduct }) {
   const [quantity, setQuantity] = useState(1);
 
   function handleChange(quantity) {
@@ -20,9 +20,17 @@ function CartItems({ product, handleUpdate }) {
       });
   }
 
+  function handleRemove() {
+    fetch(`http://localhost:9090/cart_products/${product.id}`, {
+      method: "DELETE",
+    })
+      .then((r) => r.json())
+      .then((deletedProduct) => onRemoveProduct(deletedProduct));
+  }
+
   return (
     <div className="container" class="container" key={product.id}>
-      <ul>
+      <div class="grid">
         <li>Item: {product.product.name}</li>
         <li>Price: ${product.product.price}</li>
         <li>
@@ -40,8 +48,9 @@ function CartItems({ product, handleUpdate }) {
             <option value="10">10</option>
           </select>
           <p>{quantity}</p>
+          <button onClick={handleRemove}>Remove Item</button>
         </li>
-      </ul>
+      </div>
     </div>
   );
 }
