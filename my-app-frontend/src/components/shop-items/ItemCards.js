@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function ItemCards({ item }) {
   const { name, image_url, desc, color, price } = item;
   function handleClick() {
     console.log("hi");
   }
-  console.log(image_url);
+  // console.log(image_url);
   return (
     <div className="card">
       <img src={image_url} alt={`product hat`} style={{ maxWidth: "300px" }} />

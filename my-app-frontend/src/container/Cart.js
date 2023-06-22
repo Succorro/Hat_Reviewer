@@ -1,7 +1,24 @@
 import React, { useState } from "react";
+import CartItems from "../components/cart-items/CartItems";
 
-function Cart() {
+function Cart({ products }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const total = 0;
+
+  function handleUpdate(newProduct) {
+    console.log(newProduct);
+  }
+
+  const displayProducts = products.map((product) => {
+    return (
+      <CartItems
+        key={product.id}
+        product={product}
+        handleUpdate={handleUpdate}
+      />
+    );
+  });
+
   return (
     <>
       {" "}
@@ -17,6 +34,8 @@ function Cart() {
         style={{ display: `${isCartOpen ? "flex" : "none"}`, zIndex: "2" }}
       >
         <h1>Open</h1>
+        {displayProducts}
+        <h1>Total: ${total}</h1>
       </nav>
     </>
   );

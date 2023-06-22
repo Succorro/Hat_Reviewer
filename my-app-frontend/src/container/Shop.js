@@ -2,7 +2,6 @@ import React from "react";
 import Products from "../components/shop-items/Products";
 function Shop({ items }) {
   const displayItems = items.map((item) => {
-    // console.log(item.image_url);
     return (
       <div className="container" class="container" key={item.id}>
         <h2>{item.name}</h2>

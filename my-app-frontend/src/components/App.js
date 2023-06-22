@@ -10,6 +10,7 @@ import Cart from "../container/Cart";
 
 function App() {
   const [items, setItems] = useState([]);
+  const [cartProducts, setCartProducts] = useState([]);
   useEffect(() => {
     try {
       fetch("http://localhost:9090/categories")
@@ -19,16 +20,36 @@ function App() {
       alert(error);
     }
   }, []);
+  useEffect(() => {
+    try {
+      fetch("http://localhost:9090/cart_products")
+        .then((r) => r.json())
+        .then((data) => setCartProducts(data));
+    } catch (error) {
+      alert(error);
+    }
+  }, []);
+
+  function onAddProduct(newProduct) {
+    setCartProducts((productsArray) => [...productsArray, newProduct]);
+  }
+  // function onRemoveProduct(){
+
+  // }
   return (
     <div className="App">
       <Navigation />
       <aside>
-        <Cart />
+        <Cart products={cartProducts} />
       </aside>
       <Routes>
         <Route index element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route exact path="/shop" element={<Shop items={items} />} />
+        <Route
+          exact
+          path="/shop"
+          element={<Shop items={items} onAddProduct={onAddProduct} />}
+        />
       </Routes>
     </div>
   );
