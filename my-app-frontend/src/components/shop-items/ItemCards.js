@@ -1,17 +1,29 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-function ItemCards({ item }) {
-  const { name, image_url, desc, color, price } = item;
+function ItemCards({ item, onAddProduct }) {
+  const { name, image_url, desc, price } = item;
+
   function handleClick() {
-    console.log("hi");
+    fetch(`http://localhost:9090/cart_products`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        product_id: item.id,
+        shopping_cart_id: 1,
+        qty: 1,
+      }),
+    })
+      .then((r) => r.json())
+      .then((newCartItem) => onAddProduct(newCartItem));
   }
-  // console.log(image_url);
+
   return (
     <div className="card">
       <img src={image_url} alt={`product hat`} style={{ maxWidth: "300px" }} />
       <h5>{name}</h5>
-      <p>{desc}</p>
-      <p>{color}</p>${price}
+      <p>{desc}</p>${price}
       <button type="button" onClick={handleClick}>
         Add to Cart
       </button>
