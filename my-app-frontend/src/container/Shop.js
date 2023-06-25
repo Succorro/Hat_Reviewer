@@ -1,6 +1,6 @@
 import React from "react";
 import Products from "../components/shop-items/Products";
-function Shop({ items, onAddProduct }) {
+function Shop({ items, onAddProduct, setItemArr }) {
   const displayItems = items.map((item) => {
     return (
       <div className="container" class="container" key={item.id}>
@@ -10,6 +10,7 @@ function Shop({ items, onAddProduct }) {
             key={item.products.id}
             products={item.products}
             onAddProduct={onAddProduct}
+            setItemArr={setItemArr}
           />
         </div>
       </div>

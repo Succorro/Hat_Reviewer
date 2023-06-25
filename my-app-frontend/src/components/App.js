@@ -11,6 +11,14 @@ import Cart from "../container/Cart";
 function App() {
   const [items, setItems] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
+  const [newProducts, setNewProduct] = useState({
+    id: 9999,
+    product_id: 0,
+    qty: 1,
+    shopping_cart_id: 1,
+    product: {},
+  });
+
   useEffect(() => {
     try {
       fetch("http://localhost:9090/categories")
@@ -31,18 +39,41 @@ function App() {
   }, []);
 
   function onAddProduct(newProduct) {
-    setCartProducts((productsArray) => [...productsArray, newProduct]);
+    const mapArray = items.map((item) => item.products);
+    const filterArray = mapArray
+      .flat(1)
+      .filter((item) => item.id === newProduct.product_id);
+    setNewProduct({
+      id: newProduct.id,
+      product_id: newProduct.product_id,
+      qty: 1,
+      shopping_cart_id: 1,
+      product: filterArray[0],
+    });
   }
+  useEffect(() => {
+    if (newProducts.id !== 9999) {
+      setCartProducts((productsArray) => [...productsArray, newProducts]);
+    } else {
+      console.log("UP and Running");
+    }
+  }, [newProducts]);
+
   function onRemoveProduct(deletedProduct) {
     setCartProducts((productsArray) =>
       productsArray.filter((product) => product.id !== deletedProduct.id)
     );
   }
+
   return (
     <div className="App">
       <Navigation />
       <aside>
-        <Cart products={cartProducts} onRemoveProduct={onRemoveProduct} />
+        <Cart
+          products={cartProducts}
+          onRemoveProduct={onRemoveProduct}
+          itemsCategory={items}
+        />
       </aside>
       <Routes>
         <Route index element={<Home />} />
@@ -50,7 +81,13 @@ function App() {
         <Route
           exact
           path="/shop"
-          element={<Shop items={items} onAddProduct={onAddProduct} />}
+          element={
+            <Shop
+              items={items}
+              onAddProduct={onAddProduct}
+              // setItemArr={setItemArr}
+            />
+          }
         />
       </Routes>
     </div>
