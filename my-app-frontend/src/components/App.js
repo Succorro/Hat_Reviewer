@@ -1,4 +1,3 @@
-// import "./App.css";
 import "@picocss/pico";
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
@@ -14,6 +13,13 @@ function App() {
   const [newProducts, setNewProduct] = useState({
     id: 9999,
     product_id: 0,
+    qty: 1,
+    shopping_cart_id: 1,
+    product: {},
+  });
+  const [changedProduct, setChangedProduct] = useState({
+    id: 9999,
+    product_id: 1,
     qty: 1,
     shopping_cart_id: 1,
     product: {},
@@ -51,6 +57,7 @@ function App() {
       product: filterArray[0],
     });
   }
+
   useEffect(() => {
     if (newProducts.id !== 9999) {
       setCartProducts((productsArray) => [...productsArray, newProducts]);
@@ -65,12 +72,38 @@ function App() {
     );
   }
 
+  function handleUpdate(updatedProduct) {
+    const mapArray = items.map((item) => item.products);
+    const filterArray = mapArray
+      .flat(1)
+      .filter((item) => item.id === updatedProduct.product_id);
+    setChangedProduct({
+      id: updatedProduct.id,
+      product_id: updatedProduct.product_id,
+      qty: updatedProduct.qty,
+      shopping_cart_id: 1,
+      product: filterArray[0],
+    });
+  }
+  useEffect(() => {
+    const updateProduct = cartProducts.map((product) => {
+      return product.id === changedProduct.id ? changedProduct : product;
+    });
+
+    if (changedProduct.id !== 9999) {
+      setCartProducts(updateProduct);
+    } else {
+      console.log("UP and Running");
+    }
+  }, [changedProduct]);
+
   return (
     <div className="App">
       <Navigation />
       <aside>
         <Cart
-          products={cartProducts}
+          cartProducts={cartProducts}
+          onHandleUpdate={handleUpdate}
           onRemoveProduct={onRemoveProduct}
           itemsCategory={items}
         />
@@ -81,13 +114,7 @@ function App() {
         <Route
           exact
           path="/shop"
-          element={
-            <Shop
-              items={items}
-              onAddProduct={onAddProduct}
-              // setItemArr={setItemArr}
-            />
-          }
+          element={<Shop items={items} onAddProduct={onAddProduct} />}
         />
       </Routes>
     </div>
