@@ -17,13 +17,7 @@ function App() {
     shopping_cart_id: 1,
     product: {},
   });
-  const [changedProduct, setChangedProduct] = useState({
-    id: 9999,
-    product_id: 1,
-    qty: 1,
-    shopping_cart_id: 1,
-    product: {},
-  });
+  const mapArray = items.map((item) => item.products);
 
   useEffect(() => {
     try {
@@ -42,10 +36,37 @@ function App() {
     } catch (error) {
       alert(error);
     }
-  }, []);
+    if (newProducts.id !== 9999) {
+      setCartProducts((productsArray) => [...productsArray, newProducts]);
+      setNewProduct({
+        id: 9999,
+        product_id: 0,
+        qty: 1,
+        shopping_cart_id: 1,
+        product: {},
+      });
+    } else {
+      console.log("UP and Running");
+    }
+    const updateProduct = cartProducts.map((product) => {
+      return product.id === newProducts.id ? newProducts : product;
+    });
+
+    if (newProducts.id !== 9999) {
+      setCartProducts(updateProduct);
+      setNewProduct({
+        id: 9999,
+        product_id: 0,
+        qty: 1,
+        shopping_cart_id: 1,
+        product: {},
+      });
+    } else {
+      console.log("UP and Running");
+    }
+  }, [newProducts]);
 
   function onAddProduct(newProduct) {
-    const mapArray = items.map((item) => item.products);
     const filterArray = mapArray
       .flat(1)
       .filter((item) => item.id === newProduct.product_id);
@@ -54,17 +75,10 @@ function App() {
       product_id: newProduct.product_id,
       qty: 1,
       shopping_cart_id: 1,
+      product_price: newProduct.product_price,
       product: filterArray[0],
     });
   }
-
-  useEffect(() => {
-    if (newProducts.id !== 9999) {
-      setCartProducts((productsArray) => [...productsArray, newProducts]);
-    } else {
-      console.log("UP and Running");
-    }
-  }, [newProducts]);
 
   function onRemoveProduct(deletedProduct) {
     setCartProducts((productsArray) =>
@@ -73,29 +87,18 @@ function App() {
   }
 
   function handleUpdate(updatedProduct) {
-    const mapArray = items.map((item) => item.products);
     const filterArray = mapArray
       .flat(1)
       .filter((item) => item.id === updatedProduct.product_id);
-    setChangedProduct({
+    setNewProduct({
       id: updatedProduct.id,
       product_id: updatedProduct.product_id,
       qty: updatedProduct.qty,
       shopping_cart_id: 1,
+      product_price: updatedProduct.product_price,
       product: filterArray[0],
     });
   }
-  useEffect(() => {
-    const updateProduct = cartProducts.map((product) => {
-      return product.id === changedProduct.id ? changedProduct : product;
-    });
-
-    if (changedProduct.id !== 9999) {
-      setCartProducts(updateProduct);
-    } else {
-      console.log("UP and Running");
-    }
-  }, [changedProduct]);
 
   return (
     <div className="App">

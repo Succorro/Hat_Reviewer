@@ -1,9 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CartItems from "../components/cart-items/CartItems";
 
 function Cart({ cartProducts, onRemoveProduct, onHandleUpdate }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [total, setTotal] = useState(0);
+  const [currentTotal, setCurrentTotal] = useState(0);
+
+  const cartMap = cartProducts.map((product) => {
+    const container = {};
+    container.price = product.product_price;
+    container.qty = product.qty;
+    return container;
+  });
+  const reduce = cartMap.reduce(
+    (total, product) => total + product.price * product.qty,
+    0
+  );
+  useEffect(() => {
+    setCurrentTotal(reduce);
+  }, [cartProducts]);
+
   const displayProducts = cartProducts.map((products) => {
     return (
       <CartItems
@@ -15,7 +30,6 @@ function Cart({ cartProducts, onRemoveProduct, onHandleUpdate }) {
     );
   });
 
-  console.log(cartProducts.map((product) => product.qty));
   return (
     <>
       {" "}
@@ -31,7 +45,7 @@ function Cart({ cartProducts, onRemoveProduct, onHandleUpdate }) {
         style={{ display: `${isCartOpen ? "flex" : "none"}`, zIndex: "2" }}
       >
         {displayProducts}
-        <h1>Total: ${total}</h1>
+        <h1>Total: ${currentTotal}</h1>
       </nav>
     </>
   );

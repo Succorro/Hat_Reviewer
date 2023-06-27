@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
-function CartItems({ products, handleUpdate, onRemoveProduct }) {
-  const [quantity, setQuantity] = useState(1);
+function CartItems({ products, handleUpdate, onRemoveProduct, handleTotal }) {
   const { product } = products;
+
   function handleChange(quantity) {
-    setQuantity(quantity);
     fetch(`http://localhost:9090/cart_products/${products.id}`, {
       method: "PATCH",
       headers: {
@@ -34,7 +33,10 @@ function CartItems({ products, handleUpdate, onRemoveProduct }) {
       <li>Price: ${product.price}</li>
       <li>
         <label>Qty:</label>
-        <select onChange={(e) => handleChange(e.target.value)}>
+        <select
+          value={products.qty}
+          onChange={(e) => handleChange(e.target.value)}
+        >
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -46,7 +48,6 @@ function CartItems({ products, handleUpdate, onRemoveProduct }) {
           <option value="9">9</option>
           <option value="10">10</option>
         </select>
-        <p>{quantity}</p>
         <button onClick={handleRemove}>Remove Item</button>
       </li>
     </main>

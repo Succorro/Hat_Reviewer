@@ -4,6 +4,7 @@ function ItemCards({ item, onAddProduct }) {
   const { name, image_url, desc, price } = item;
 
   function handleClick() {
+    console.log(item.price);
     fetch(`http://localhost:9090/cart_products`, {
       method: "POST",
       headers: {
@@ -13,6 +14,7 @@ function ItemCards({ item, onAddProduct }) {
         product_id: item.id,
         shopping_cart_id: 1,
         qty: 1,
+        product_price: item.price,
       }),
     })
       .then((r) => r.json())
