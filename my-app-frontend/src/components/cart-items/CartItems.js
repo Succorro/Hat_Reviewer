@@ -28,10 +28,13 @@ function CartItems({ products, handleUpdate, onRemoveProduct, handleTotal }) {
   }
 
   return (
-    <main key={product.id}>
-      <li>Item: {product.name}</li>
-      <li>Price: ${product.price}</li>
-      <li>
+    <main
+      key={product.id}
+      style={{ margin: "0px 10px 0px 0px", width: 150, height: 300 }}
+    >
+      <p>Item: {product.name} </p>
+      <p>Price: ${product.price}</p>
+      <p>
         <label>Qty:</label>
         <select
           value={products.qty}
@@ -49,7 +52,7 @@ function CartItems({ products, handleUpdate, onRemoveProduct, handleTotal }) {
           <option value="10">10</option>
         </select>
         <button onClick={handleRemove}>Remove Item</button>
-      </li>
+      </p>
     </main>
   );
 }

@@ -8,6 +8,7 @@ import Shop from "../container/Shop";
 import Cart from "../container/Cart";
 
 function App() {
+  const [load, setLoad] = useState(false);
   const [items, setItems] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [newProducts, setNewProduct] = useState({
@@ -64,6 +65,7 @@ function App() {
     } else {
       console.log("UP and Running");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newProducts]);
 
   function onAddProduct(newProduct) {
@@ -101,16 +103,20 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div
+      className="App"
+      aria-busy={load ? "false" : "true"}
+      onLoad={() => setLoad(true)}
+    >
       <Navigation />
-      <aside>
-        <Cart
-          cartProducts={cartProducts}
-          onHandleUpdate={handleUpdate}
-          onRemoveProduct={onRemoveProduct}
-          itemsCategory={items}
-        />
-      </aside>
+
+      <Cart
+        cartProducts={cartProducts}
+        onHandleUpdate={handleUpdate}
+        onRemoveProduct={onRemoveProduct}
+        itemsCategory={items}
+      />
+
       <Routes>
         <Route index element={<Home />} />
         <Route path="/about" element={<About />} />

@@ -17,6 +17,7 @@ function Cart({ cartProducts, onRemoveProduct, onHandleUpdate }) {
   );
   useEffect(() => {
     setCurrentTotal(reduce);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartProducts]);
 
   const displayProducts = cartProducts.map((products) => {
@@ -31,23 +32,26 @@ function Cart({ cartProducts, onRemoveProduct, onHandleUpdate }) {
   });
 
   return (
-    <>
-      {" "}
-      <button
-        className="cart-toggle"
-        onClick={() => setIsCartOpen(!isCartOpen)}
-        style={{ width: "auto", marginLeft: "90%", marginTop: "-50px" }}
+    <aside class="container" style={{ zIndex: 2 }}>
+      <details
+        style={{
+          width: "40%",
+          marginLeft: "70%",
+          marginTop: "-50px",
+        }}
       >
-        <span>Cart</span>
-      </button>
-      <nav
-        className={`${isCartOpen ? "cart-open" : "cart-closed"}`}
-        style={{ display: `${isCartOpen ? "flex" : "none"}`, zIndex: "2" }}
-      >
-        {displayProducts}
-        <h1>Total: ${currentTotal}</h1>
-      </nav>
-    </>
+        <summary role="button">Cart</summary>
+        <figure style={{ whiteSpace: "nowrap", display: "flex  " }}>
+          {displayProducts}
+        </figure>
+        <footer>
+          Total: ${currentTotal}
+          <button style={{ maxWidth: "150px", maxHeight: "75px" }}>
+            Check Out
+          </button>
+        </footer>
+      </details>{" "}
+    </aside>
   );
 }
 export default Cart;

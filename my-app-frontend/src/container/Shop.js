@@ -3,7 +3,7 @@ import Products from "../components/shop-items/Products";
 function Shop({ items, onAddProduct, setItemArr }) {
   const displayItems = items.map((item) => {
     return (
-      <main class="container" key={item.id}>
+      <section class="container" key={item.id}>
         <h2>{item.name}</h2>
         <div className="grid" class="grid">
           <Products
@@ -13,14 +13,14 @@ function Shop({ items, onAddProduct, setItemArr }) {
             setItemArr={setItemArr}
           />
         </div>
-      </main>
+      </section>
     );
   });
   return (
-    <>
-      <h1>Hat Stop</h1>
+    <div className="conatiner" class="container">
+      <h1>Hat Shop</h1>
       {displayItems}
-    </>
+    </div>
   );
 }
 
