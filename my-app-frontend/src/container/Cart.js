@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import CartItems from "../components/cart-items/CartItems";
 
-function Cart({ cartProducts, onRemoveProduct, onHandleUpdate }) {
-  const [isCartOpen, setIsCartOpen] = useState(false);
+function Cart({ cartProducts, onHandleUpdate }) {
   const [currentTotal, setCurrentTotal] = useState(0);
-
+  // Used to create total, needs optimization
   const cartMap = cartProducts.map((product) => {
     const container = {};
     container.price = product.product_price;
@@ -15,6 +14,7 @@ function Cart({ cartProducts, onRemoveProduct, onHandleUpdate }) {
     (total, product) => total + product.price * product.qty,
     0
   );
+  //
   useEffect(() => {
     setCurrentTotal(reduce);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -25,31 +25,35 @@ function Cart({ cartProducts, onRemoveProduct, onHandleUpdate }) {
       <CartItems
         key={products.id}
         products={products}
-        onRemoveProduct={onRemoveProduct}
         handleUpdate={onHandleUpdate}
       />
     );
   });
 
   return (
-    <aside class="container" style={{ zIndex: 2 }}>
+    <aside class="container">
       <details
         style={{
           width: "40%",
-          marginLeft: "70%",
+          marginLeft: "48%",
           marginTop: "-50px",
+          zIndex: 2,
+          position: "absolute",
+          backgroundColor: "#131e25",
         }}
       >
         <summary role="button">Cart</summary>
-        <figure style={{ whiteSpace: "nowrap", display: "flex  " }}>
-          {displayProducts}
-        </figure>
-        <footer>
-          Total: ${currentTotal}
-          <button style={{ maxWidth: "150px", maxHeight: "75px" }}>
-            Check Out
-          </button>
-        </footer>
+        <div style={{ paddingLeft: "10px" }}>
+          <figure style={{ whiteSpace: "nowrap", display: "flex  " }}>
+            {displayProducts}
+          </figure>
+          <footer>
+            Total: ${currentTotal}
+            <button style={{ maxWidth: "150px", maxHeight: "75px" }}>
+              Check Out
+            </button>
+          </footer>
+        </div>
       </details>{" "}
     </aside>
   );

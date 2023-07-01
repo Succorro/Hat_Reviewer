@@ -1,16 +1,16 @@
 import React from "react";
 import Products from "../components/shop-items/Products";
-function Shop({ items, onAddProduct, setItemArr }) {
-  const displayItems = items.map((item) => {
+function Shop({ items, onUpdateCart }) {
+  const displayCategories = items.map((item) => {
+    const { id, name, products } = item;
     return (
-      <section class="container" key={item.id}>
-        <h2>{item.name}</h2>
+      <section class="container" key={id}>
+        <h2>{name}</h2>
         <div className="grid" class="grid">
           <Products
-            key={item.products.id}
-            products={item.products}
-            onAddProduct={onAddProduct}
-            setItemArr={setItemArr}
+            key={products.id}
+            products={products}
+            onUpdateCart={onUpdateCart}
           />
         </div>
       </section>
@@ -19,7 +19,7 @@ function Shop({ items, onAddProduct, setItemArr }) {
   return (
     <div className="conatiner" class="container">
       <h1>Hat Shop</h1>
-      {displayItems}
+      {displayCategories}
     </div>
   );
 }

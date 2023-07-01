@@ -1,6 +1,6 @@
 import React from "react";
 
-function ItemCards({ item, onAddProduct }) {
+function ItemCards({ item, onUpdateCart }) {
   const { name, image_url, desc, price } = item;
 
   function handleClick() {
@@ -17,7 +17,7 @@ function ItemCards({ item, onAddProduct }) {
       }),
     })
       .then((r) => r.json())
-      .then((newCartItem) => onAddProduct(newCartItem));
+      .then((newCartItem) => onUpdateCart(newCartItem));
   }
 
   return (

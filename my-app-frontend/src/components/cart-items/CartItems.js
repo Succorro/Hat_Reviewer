@@ -1,7 +1,8 @@
 import React from "react";
 
-function CartItems({ products, handleUpdate, onRemoveProduct, handleTotal }) {
-  const { product } = products;
+function CartItems({ products, handleUpdate }) {
+  const { product, qty } = products;
+  const { id, name, price } = product;
 
   function handleChange(quantity) {
     fetch(`http://localhost:9090/cart_products/${products.id}`, {
@@ -24,22 +25,19 @@ function CartItems({ products, handleUpdate, onRemoveProduct, handleTotal }) {
       method: "DELETE",
     })
       .then((r) => r.json())
-      .then((deletedProduct) => onRemoveProduct(deletedProduct));
+      .then((deletedProduct) => handleUpdate(deletedProduct));
   }
 
   return (
     <main
-      key={product.id}
+      key={id}
       style={{ margin: "0px 10px 0px 0px", width: 150, height: 300 }}
     >
-      <p>Item: {product.name} </p>
-      <p>Price: ${product.price}</p>
+      <p>Item: {name} </p>
+      <p>Price: ${price}</p>
       <p>
         <label>Qty:</label>
-        <select
-          value={products.qty}
-          onChange={(e) => handleChange(e.target.value)}
-        >
+        <select value={qty} onChange={(e) => handleChange(e.target.value)}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>

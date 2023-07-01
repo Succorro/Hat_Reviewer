@@ -1,21 +1,21 @@
 import React from "react";
-import logo from "../logo.svg";
 
 function Home() {
   return (
     <div className="container">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <img
+          src="/Images/HatShopBackground.jpg"
+          className="Background"
+          alt="Background"
+        />
         <a
-          className="App-link"
-          href="https://reactjs.org"
+          className="P-link"
+          href="https://succorro.com"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          My Portfolio
         </a>
       </header>
     </div>
