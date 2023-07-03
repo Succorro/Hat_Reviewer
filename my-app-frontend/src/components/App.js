@@ -12,6 +12,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [newProducts, setNewProduct] = useState({});
+  const [newReview, setNewReview] = useState([]);
 
   useEffect(() => {
     try {
@@ -21,7 +22,7 @@ function App() {
     } catch (error) {
       alert(error);
     }
-  }, []);
+  }, [newReview]);
 
   useEffect(() => {
     try {
@@ -58,7 +59,13 @@ function App() {
         <Route
           exact
           path="/shop"
-          element={<Shop items={items} onUpdateCart={onUpdateCart} />}
+          element={
+            <Shop
+              items={items}
+              onUpdateCart={onUpdateCart}
+              onNewReview={setNewReview}
+            />
+          }
         />
       </Routes>
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import Reviews from "../cart-items/Reviews";
 
-function ItemCards({ item, onUpdateCart }) {
+function ItemCards({ item, onUpdateCart, onNewReview }) {
   const { name, image_url, desc, price } = item;
   function handleClick() {
     fetch(`http://localhost:9090/cart_products`, {
@@ -28,7 +28,7 @@ function ItemCards({ item, onUpdateCart }) {
       <button type="button" onClick={handleClick}>
         Add to Cart
       </button>
-      <Reviews key={item.id} reviews={item.reviews} />
+      <Reviews key={item.id} item={item} onNewReview={onNewReview} />
     </main>
   );
 }

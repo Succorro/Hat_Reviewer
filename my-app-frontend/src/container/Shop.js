@@ -1,6 +1,6 @@
 import React from "react";
 import Products from "../components/shop-items/Products";
-function Shop({ items, onUpdateCart }) {
+function Shop({ items, onUpdateCart, onNewReview }) {
   const displayCategories = items.map((item) => {
     const { id, name, products } = item;
     return (
@@ -11,6 +11,7 @@ function Shop({ items, onUpdateCart }) {
             key={products.id}
             products={products}
             onUpdateCart={onUpdateCart}
+            onNewReview={onNewReview}
           />
         </div>
       </section>
