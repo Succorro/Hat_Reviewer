@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Rating from "@mui/material/Rating";
 
-function Reviews({ item, onNewReview }) {
-  const { reviews } = item;
+function Reviews({ item, reviews, onNewReview }) {
   const [value] = useState(0);
 
   function handleChange(number) {

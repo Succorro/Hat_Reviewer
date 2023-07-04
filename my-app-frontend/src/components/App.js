@@ -11,8 +11,7 @@ function App() {
   const [load, setLoad] = useState(false);
   const [items, setItems] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
-  const [newProducts, setNewProduct] = useState({});
-  const [newReview, setNewReview] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     try {
@@ -22,7 +21,17 @@ function App() {
     } catch (error) {
       alert(error);
     }
-  }, [newReview]);
+  }, []);
+
+  useEffect(() => {
+    try {
+      fetch("http://localhost:9090/reviews")
+        .then((r) => r.json())
+        .then((data) => setReviews(data));
+    } catch (error) {
+      alert(error);
+    }
+  }, []);
 
   useEffect(() => {
     try {
@@ -52,6 +61,10 @@ function App() {
     );
   }
 
+  function onNewReview(newReview) {
+    setReviews((reviews) => [...reviews, newReview]);
+  }
+
   return (
     <div
       className="App"
@@ -64,7 +77,6 @@ function App() {
         cartProducts={cartProducts}
         onHandleUpdate={onUpdateCart}
         onRemoveCart={onRemoveCart}
-        itemsCategory={items}
       />
 
       <Routes>
@@ -76,7 +88,8 @@ function App() {
           element={
             <Shop
               items={items}
-              onNewReview={setNewReview}
+              reviews={reviews}
+              onNewReview={onNewReview}
               onAddToCart={onAddToCart}
             />
           }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Reviews from "../cart-items/Reviews";
 
-function ItemCards({ item, onNewReview, onAddToCart }) {
+function ItemCards({ item, reviews, onNewReview, onAddToCart }) {
   const [sendItem] = useState({
     product_id: item.id,
     shopping_cart_id: 1,
@@ -40,7 +40,12 @@ function ItemCards({ item, onNewReview, onAddToCart }) {
       <button type="button" onClick={handleClick}>
         Add to Cart
       </button>
-      <Reviews key={item.id} item={item} onNewReview={onNewReview} />
+      <Reviews
+        key={item.id}
+        item={item}
+        reviews={reviews}
+        onNewReview={onNewReview}
+      />
     </main>
   );
 }
