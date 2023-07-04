@@ -28,15 +28,24 @@ function App() {
     try {
       fetch("http://localhost:9090/cart_products")
         .then((r) => r.json())
-        .then((data) => setCartProducts(data));
+        .then((data) => {
+          setCartProducts(data);
+        });
     } catch (error) {
       alert(error);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newProducts]);
 
   function onUpdateCart(newProduct) {
+    console.log(newProduct);
     setNewProduct(newProduct);
+  }
+
+  function onAddToCart(newProduct) {
+    console.log(newProduct);
+    setCartProducts((cartProducts) => [...cartProducts, newProduct]);
   }
 
   return (
@@ -62,8 +71,8 @@ function App() {
           element={
             <Shop
               items={items}
-              onUpdateCart={onUpdateCart}
               onNewReview={setNewReview}
+              onAddToCart={onAddToCart}
             />
           }
         />

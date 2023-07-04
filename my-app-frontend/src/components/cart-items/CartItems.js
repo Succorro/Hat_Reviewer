@@ -2,7 +2,8 @@ import React from "react";
 
 function CartItems({ products, handleUpdate }) {
   const { product, qty } = products;
-  const { id, name, price } = product;
+  const { name, price } = product;
+  //   console.log(product);
 
   function handleChange(quantity) {
     fetch(`http://localhost:9090/cart_products/${products.id}`, {
@@ -29,10 +30,7 @@ function CartItems({ products, handleUpdate }) {
   }
 
   return (
-    <main
-      key={id}
-      style={{ margin: "0px 10px 0px 0px", width: 150, height: 300 }}
-    >
+    <main style={{ margin: "0px 10px 0px 0px", width: 150, height: 300 }}>
       <p>Item: {name} </p>
       <p>Price: ${price}</p>
       <p>

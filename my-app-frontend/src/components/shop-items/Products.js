@@ -1,14 +1,14 @@
 import React from "react";
 import ItemCards from "./ItemCards";
 
-function Products({ products, onUpdateCart, onNewReview }) {
+function Products({ products, onNewReview, onAddToCart }) {
   const displayItems = products.map((item) => {
     return (
       <ItemCards
         key={item.id}
         item={item}
-        onUpdateCart={onUpdateCart}
         onNewReview={onNewReview}
+        onAddToCart={onAddToCart}
       />
     );
   });
