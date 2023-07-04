@@ -1,9 +1,8 @@
 import React from "react";
 
-function CartItems({ products, handleUpdate }) {
+function CartItems({ products, handleUpdate, onRemoveCart }) {
   const { product, qty } = products;
   const { name, price } = product;
-  //   console.log(product);
 
   function handleChange(quantity) {
     fetch(`http://localhost:9090/cart_products/${products.id}`, {
@@ -17,6 +16,13 @@ function CartItems({ products, handleUpdate }) {
     })
       .then((r) => r.json())
       .then((newQuantity) => {
+        newQuantity = {
+          ...newQuantity,
+          product: {
+            name: name,
+            price: price,
+          },
+        };
         handleUpdate(newQuantity);
       });
   }
@@ -26,7 +32,7 @@ function CartItems({ products, handleUpdate }) {
       method: "DELETE",
     })
       .then((r) => r.json())
-      .then((deletedProduct) => handleUpdate(deletedProduct));
+      .then((deletedProduct) => onRemoveCart(deletedProduct));
   }
 
   return (

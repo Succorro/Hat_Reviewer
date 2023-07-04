@@ -20,7 +20,6 @@ function ItemCards({ item, onNewReview, onAddToCart }) {
     })
       .then((r) => r.json())
       .then((newItem) => {
-        console.log(newItem);
         newItem = {
           ...newItem,
           product: {

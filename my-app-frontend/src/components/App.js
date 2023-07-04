@@ -34,18 +34,22 @@ function App() {
     } catch (error) {
       alert(error);
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [newProducts]);
+  }, []);
 
   function onUpdateCart(newProduct) {
-    console.log(newProduct);
-    setNewProduct(newProduct);
+    const updateProduct = cartProducts.map((product) => {
+      return product.id === newProduct.id ? newProduct : product;
+    });
+    setCartProducts(updateProduct);
   }
 
   function onAddToCart(newProduct) {
-    console.log(newProduct);
     setCartProducts((cartProducts) => [...cartProducts, newProduct]);
+  }
+  function onRemoveCart(deletedProduct) {
+    setCartProducts((productsArray) =>
+      productsArray.filter((product) => product.id !== deletedProduct.id)
+    );
   }
 
   return (
@@ -59,6 +63,7 @@ function App() {
       <Cart
         cartProducts={cartProducts}
         onHandleUpdate={onUpdateCart}
+        onRemoveCart={onRemoveCart}
         itemsCategory={items}
       />
 

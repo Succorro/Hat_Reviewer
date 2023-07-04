@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CartItems from "../components/cart-items/CartItems";
 
-function Cart({ cartProducts, onHandleUpdate }) {
+function Cart({ cartProducts, onHandleUpdate, onRemoveCart }) {
   const [currentTotal, setCurrentTotal] = useState(0);
   // Used to create total, needs optimization
   const cartMap = cartProducts.map((product) => {
@@ -14,7 +14,7 @@ function Cart({ cartProducts, onHandleUpdate }) {
     (total, product) => total + product.price * product.qty,
     0
   );
-  //
+  // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   useEffect(() => {
     setCurrentTotal(reduce);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -26,6 +26,7 @@ function Cart({ cartProducts, onHandleUpdate }) {
         key={products.id}
         products={products}
         handleUpdate={onHandleUpdate}
+        onRemoveCart={onRemoveCart}
       />
     );
   });
