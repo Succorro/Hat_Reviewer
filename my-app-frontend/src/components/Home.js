@@ -9,14 +9,10 @@ function Home() {
           className="Background"
           alt="Background"
         />
-        <a
-          className="P-link"
-          href="https://succorro.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          My Portfolio
-        </a>
+        <h3>
+          Welcome, If you're looking for great hats at amazing prices. Then
+          you've come to the right place!!
+        </h3>
       </header>
     </div>
   );
