@@ -1,27 +1,34 @@
 import React from "react";
-import Products from "../components/shop-items/Products";
+import ItemCards from "../components/shop-items/ItemCards";
+
 function Shop({ items, reviews, onNewReview, onAddToCart }) {
-  const displayCategories = items.map((item) => {
-    const { id, name, products } = item;
+  const displayItems = items.map((item) => {
+    const filteredReviews = reviews.filter(
+      (review) => review.product_id === item.id
+    );
     return (
-      <section class="container" key={id}>
-        <h2>{name}</h2>
-        <div className="grid" class="grid">
-          <Products
-            key={products.id}
-            products={products}
-            reviews={reviews}
-            onNewReview={onNewReview}
-            onAddToCart={onAddToCart}
-          />
-        </div>
-      </section>
+      <ItemCards
+        key={item.id}
+        item={item}
+        reviews={filteredReviews}
+        onNewReview={onNewReview}
+        onAddToCart={onAddToCart}
+      />
     );
   });
+
   return (
-    <div className="conatiner" class="container">
+    <div className="container" class="container">
       <h1>Hat Shop</h1>
-      {displayCategories}
+      <div
+        className="grid"
+        class="grid"
+        style={{
+          gridTemplateColumns: "33% 33% 33%",
+        }}
+      >
+        {displayItems}
+      </div>
     </div>
   );
 }

@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     try {
-      fetch("http://localhost:9090/categories")
+      fetch("http://localhost:9090/products")
         .then((r) => r.json())
         .then((data) => setItems(data));
     } catch (error) {
