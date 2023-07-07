@@ -12,7 +12,7 @@ function CartItems({ products, handleUpdate, onRemoveCart }) {
       },
       body: JSON.stringify({
         qty: quantity,
-        total: 0,
+        total: quantity * price,
       }),
     })
       .then((r) => r.json())

@@ -12,6 +12,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [currentTotal, setCurrentTotal] = useState(0);
 
   useEffect(() => {
     try {
@@ -39,17 +40,29 @@ function App() {
         .then((r) => r.json())
         .then((data) => {
           setCartProducts(data);
+          handleTotal(data);
         });
     } catch (error) {
       alert(error);
     }
   }, []);
 
+  function handleTotal(items) {
+    const mapper = items.map((product) => {
+      const container = {};
+      container.total = product.total;
+      return container;
+    });
+    const reducer = mapper.reduce((total, product) => total + product.total, 0);
+    setCurrentTotal(reducer);
+  }
+
   function onUpdateCart(newProduct) {
-    const updateProduct = cartProducts.map((product) => {
+    const updatedProduct = cartProducts.map((product) => {
       return product.id === newProduct.id ? newProduct : product;
     });
-    setCartProducts(updateProduct);
+    setCartProducts(updatedProduct);
+    handleTotal(updatedProduct);
   }
 
   function onAddToCart(newProduct) {
@@ -69,7 +82,9 @@ function App() {
     <div
       className="App"
       aria-busy={load ? false : true}
-      onLoad={() => setLoad(true)}
+      onLoad={() => {
+        setLoad(true);
+      }}
     >
       <Navigation />
 
@@ -77,6 +92,7 @@ function App() {
         cartProducts={cartProducts}
         onHandleUpdate={onUpdateCart}
         onRemoveCart={onRemoveCart}
+        currentTotal={currentTotal}
       />
 
       <Routes>
