@@ -4,8 +4,8 @@ import { Routes, Route } from "react-router-dom";
 import Navigation from "./Navigation";
 import Home from "./Home.js";
 import About from "./About";
-import Shop from "../container/Shop";
-import Cart from "../container/Cart";
+import Shop from "./containers/Shop";
+import Cart from "./containers/Cart";
 
 function App() {
   const [load, setLoad] = useState(false);

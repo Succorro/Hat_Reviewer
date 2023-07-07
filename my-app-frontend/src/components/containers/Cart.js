@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CartItems from "../components/cart-items/CartItems";
+import CartItems from "../cartComponents/CartItems";
 
 function Cart({ cartProducts, onHandleUpdate, onRemoveCart }) {
   const [currentTotal, setCurrentTotal] = useState(0);

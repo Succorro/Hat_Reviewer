@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Reviews from "../cart-items/Reviews";
+import Reviews from "./Reviews";
 
 function ItemCards({ item, reviews, onNewReview, onAddToCart }) {
   const [sendItem] = useState({

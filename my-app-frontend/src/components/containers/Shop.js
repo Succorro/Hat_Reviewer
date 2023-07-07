@@ -1,5 +1,5 @@
 import React from "react";
-import ItemCards from "../components/shop-items/ItemCards";
+import ItemCards from "../shopComponents/ItemCards";
 
 function Shop({ items, reviews, onNewReview, onAddToCart }) {
   const displayItems = items.map((item) => {
