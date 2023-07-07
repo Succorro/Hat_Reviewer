@@ -5,13 +5,14 @@ function CartItems({ products, handleUpdate, onRemoveCart }) {
   const { name, price } = product;
 
   function handleChange(quantity) {
-    fetch(`http://localhost:9090/cart_products/${products.id}`, {
+    fetch(`http://localhost:9090/carts/${products.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         qty: quantity,
+        total: 0,
       }),
     })
       .then((r) => r.json())
@@ -28,7 +29,7 @@ function CartItems({ products, handleUpdate, onRemoveCart }) {
   }
 
   function handleRemove() {
-    fetch(`http://localhost:9090/cart_products/${products.id}`, {
+    fetch(`http://localhost:9090/carts/${products.id}`, {
       method: "DELETE",
     })
       .then((r) => r.json())

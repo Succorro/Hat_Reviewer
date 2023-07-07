@@ -40,7 +40,8 @@ function Reviews({ item, reviews, onNewReview }) {
       <Rating
         name="simple-controlled"
         value={value}
-        onChange={(event) => {
+        onChange={(event, newValue) => {
+          console.log(newValue);
           handleChange(event.target.value);
         }}
       />

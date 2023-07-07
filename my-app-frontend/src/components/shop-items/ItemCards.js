@@ -4,14 +4,13 @@ import Reviews from "../cart-items/Reviews";
 function ItemCards({ item, reviews, onNewReview, onAddToCart }) {
   const [sendItem] = useState({
     product_id: item.id,
-    shopping_cart_id: 1,
     qty: 1,
-    product_price: item.price,
+    total: item.price,
   });
   const { name, image_url, desc, price } = item;
 
   function handleClick() {
-    fetch(`http://localhost:9090/cart_products`, {
+    fetch(`http://localhost:9090/carts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

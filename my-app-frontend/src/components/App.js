@@ -35,7 +35,7 @@ function App() {
 
   useEffect(() => {
     try {
-      fetch("http://localhost:9090/cart_products")
+      fetch("http://localhost:9090/carts")
         .then((r) => r.json())
         .then((data) => {
           setCartProducts(data);

@@ -3,10 +3,11 @@ import CartItems from "../components/cart-items/CartItems";
 
 function Cart({ cartProducts, onHandleUpdate, onRemoveCart }) {
   const [currentTotal, setCurrentTotal] = useState(0);
+
   // Used to create total, needs optimization
   const cartMap = cartProducts.map((product) => {
     const container = {};
-    container.price = product.product_price;
+    container.price = product.product.price;
     container.qty = product.qty;
     return container;
   });
