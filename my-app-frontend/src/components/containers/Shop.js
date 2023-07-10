@@ -1,16 +1,12 @@
 import React from "react";
 import ItemCards from "../shopComponents/ItemCards";
 
-function Shop({ items, reviews, onNewReview, onAddToCart }) {
+function Shop({ items, onNewReview, onAddToCart }) {
   const displayItems = items.map((item) => {
-    const filteredReviews = reviews.filter(
-      (review) => review.product_id === item.id
-    );
     return (
       <ItemCards
         key={item.id}
         item={item}
-        reviews={filteredReviews}
         onNewReview={onNewReview}
         onAddToCart={onAddToCart}
       />

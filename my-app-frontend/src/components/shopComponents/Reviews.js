@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Rating from "@mui/material/Rating";
 
-function Reviews({ item, reviews, onNewReview }) {
+function Reviews({ item, onNewReview }) {
+  const { reviews } = item;
   const [value] = useState(0);
 
-  function handleChange(number) {
+  function handleChange(rating) {
     fetch(`http://localhost:9090/reviews`, {
       method: "POST",
       headers: {
@@ -13,7 +14,7 @@ function Reviews({ item, reviews, onNewReview }) {
       body: JSON.stringify({
         product_id: item.id,
         name: "Guest User",
-        rating: number,
+        rating: rating,
       }),
     })
       .then((r) => r.json())
@@ -41,8 +42,7 @@ function Reviews({ item, reviews, onNewReview }) {
         name="simple-controlled"
         value={value}
         onChange={(event, newValue) => {
-          console.log(newValue);
-          handleChange(event.target.value);
+          handleChange(newValue);
         }}
       />
     </>

@@ -11,7 +11,6 @@ function App() {
   const [load, setLoad] = useState(false);
   const [items, setItems] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
-  const [reviews, setReviews] = useState([]);
   const [currentTotal, setCurrentTotal] = useState(0);
 
   useEffect(() => {
@@ -19,16 +18,6 @@ function App() {
       fetch("http://localhost:9090/products")
         .then((r) => r.json())
         .then((data) => setItems(data));
-    } catch (error) {
-      alert(error);
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      fetch("http://localhost:9090/reviews")
-        .then((r) => r.json())
-        .then((data) => setReviews(data));
     } catch (error) {
       alert(error);
     }
@@ -75,7 +64,21 @@ function App() {
   }
 
   function onNewReview(newReview) {
-    setReviews((reviews) => [...reviews, newReview]);
+    const filterProduct = items.filter(
+      (product) => product.id === newReview.product_id
+    );
+    const updatedReview = {
+      ...filterProduct[0],
+      reviews: [...filterProduct[0].reviews, newReview],
+    };
+    const updatedItems = items.map((product) => {
+      return product.id === filterProduct[0].id ? updatedReview : product;
+    });
+    console.log(items[7]);
+    console.log(filterProduct);
+    console.log(updatedReview);
+    console.log(updatedItems);
+    setItems(updatedItems);
   }
 
   return (
@@ -104,7 +107,6 @@ function App() {
           element={
             <Shop
               items={items}
-              reviews={reviews}
               onNewReview={onNewReview}
               onAddToCart={onAddToCart}
             />

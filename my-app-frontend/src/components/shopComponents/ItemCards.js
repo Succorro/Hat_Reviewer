@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Reviews from "./Reviews";
 
-function ItemCards({ item, reviews, onNewReview, onAddToCart }) {
+function ItemCards({ item, onNewReview, onAddToCart }) {
   const [sendItem] = useState({
     product_id: item.id,
     qty: 1,
     total: item.price,
   });
-  const { name, image_url, desc, price } = item;
+  const { name, image_url, desc, price, reviews } = item;
 
   function handleClick() {
     fetch(`http://localhost:9090/carts`, {
