@@ -23,6 +23,7 @@ function Cart({ cartProducts, onHandleUpdate, onRemoveCart, currentTotal }) {
           zIndex: 2,
           position: "absolute",
           backgroundColor: "#131e25",
+          border: "none",
         }}
       >
         <summary role="button">Cart</summary>

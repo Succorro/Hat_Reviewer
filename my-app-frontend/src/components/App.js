@@ -36,8 +36,9 @@ function App() {
     }
   }, []);
 
-  function handleTotal(items) {
-    const mapper = items.map((product) => {
+  function handleTotal(newItems) {
+    console.log(newItems);
+    const mapper = newItems.map((product) => {
       const container = {};
       container.total = product.total;
       return container;
@@ -55,12 +56,16 @@ function App() {
   }
 
   function onAddToCart(newProduct) {
-    setCartProducts((cartProducts) => [...cartProducts, newProduct]);
+    const newArray = [...cartProducts, newProduct];
+    setCartProducts(newArray);
+    handleTotal(newArray);
   }
   function onRemoveCart(deletedProduct) {
-    setCartProducts((productsArray) =>
-      productsArray.filter((product) => product.id !== deletedProduct.id)
+    const newArray = cartProducts.filter(
+      (product) => product.id !== deletedProduct.id
     );
+    setCartProducts(newArray);
+    handleTotal(newArray);
   }
 
   function onNewReview(newReview) {
@@ -74,16 +79,13 @@ function App() {
     const updatedItems = items.map((product) => {
       return product.id === filterProduct[0].id ? updatedReview : product;
     });
-    console.log(items[7]);
-    console.log(filterProduct);
-    console.log(updatedReview);
-    console.log(updatedItems);
     setItems(updatedItems);
   }
 
   return (
     <div
       className="App"
+      class="container"
       aria-busy={load ? false : true}
       onLoad={() => {
         setLoad(true);
