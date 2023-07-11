@@ -4,7 +4,7 @@
 
 This React application uses Ruby on Rails in order to create a full stack single page application.
 
-![Alt Text](/Phase-3-Project/my-app-frontend/public/HatShop.gif)
+![Alt Text](/Phase-3-Project/HatShop.gif)
 
 All information and images used in the shop have been created by me, generated randomly or sourced from free [image sites.](https://unsplash.com/)
 
