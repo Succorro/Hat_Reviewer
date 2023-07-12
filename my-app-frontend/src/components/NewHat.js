@@ -33,7 +33,7 @@ function NewHat({ onAddProduct }) {
       });
   }
   return (
-    <details>
+    <details style={{ marginTop: "20px" }}>
       <summary>Add New Hat</summary>
       <form onSubmit={handleSubmit}>
         <label>Name:</label>

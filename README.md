@@ -2,13 +2,13 @@
 
 ## Description
 
-This React application uses Ruby on Rails in order to create a full stack single page application.
+This React application uses Active Record from Ruby on Rails and Sinatra in order to create a full stack single page application.
 
 ![Alt Text](HatShop.gif)
 
 All information and images used in the shop have been created by me, generated randomly or sourced from free [image sites.](https://unsplash.com/)
 
-This shop uses a combination of React and ROR. The implementation of Rails allows for seemless interaction with the database using Active Record. Sinatra is used to communicate with the backend and ensures full CRUD capability. In addition to the React front end, the backend follows RESTful conventions.
+This shop uses a combination of React, Sinatra and ROR. The implementation of Active Record allows for seemless interaction with the database. Sinatra is used to communicate with the backend and ensures full CRUD capability. In addition to the React front end, the backend follows RESTful conventions.
 
 ## Installation
 
