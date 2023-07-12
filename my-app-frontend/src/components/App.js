@@ -21,9 +21,6 @@ function App() {
     } catch (error) {
       alert(error);
     }
-  }, []);
-
-  useEffect(() => {
     try {
       fetch("http://localhost:9090/carts")
         .then((r) => r.json())
@@ -37,7 +34,6 @@ function App() {
   }, []);
 
   function handleTotal(newItems) {
-    console.log(newItems);
     const mapper = newItems.map((product) => {
       const container = {};
       container.total = product.total;
@@ -82,6 +78,11 @@ function App() {
     setItems(updatedItems);
   }
 
+  function onAddProduct(newProduct) {
+    console.log(newProduct);
+    setItems((currentProducts) => [...currentProducts, newProduct]);
+  }
+
   return (
     <div
       className="App"
@@ -111,6 +112,7 @@ function App() {
               items={items}
               onNewReview={onNewReview}
               onAddToCart={onAddToCart}
+              onAddProduct={onAddProduct}
             />
           }
         />

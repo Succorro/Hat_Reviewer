@@ -1,7 +1,8 @@
 import React from "react";
 import ItemCards from "../shopComponents/ItemCards";
+import NewHat from "../NewHat";
 
-function Shop({ items, onNewReview, onAddToCart }) {
+function Shop({ items, onNewReview, onAddToCart, onAddProduct }) {
   const displayItems = items.map((item) => {
     return (
       <ItemCards
@@ -25,6 +26,7 @@ function Shop({ items, onNewReview, onAddToCart }) {
       >
         {displayItems}
       </div>
+      <NewHat onAddProduct={onAddProduct} />
     </div>
   );
 }

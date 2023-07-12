@@ -3,7 +3,7 @@ import Rating from "@mui/material/Rating";
 
 function Reviews({ item, onNewReview }) {
   const { reviews } = item;
-  const [value] = useState(0);
+  const [value, setValue] = useState(0);
 
   function handleChange(rating) {
     fetch(`http://localhost:9090/reviews`, {
@@ -43,6 +43,7 @@ function Reviews({ item, onNewReview }) {
         value={value}
         onChange={(event, newValue) => {
           handleChange(newValue);
+          setValue(0);
         }}
       />
     </>
