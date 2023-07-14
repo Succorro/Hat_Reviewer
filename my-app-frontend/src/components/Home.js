@@ -8,6 +8,11 @@ function Home() {
           src="/Images/HatShopBackground.jpg"
           className="Background"
           alt="Background"
+          style={{
+            maxWidth: "70%",
+            marginLeft: "15%",
+            marginRight: "15%",
+          }}
         />
         <h3>
           Welcome, If you're looking for great hats at amazing prices. Then

@@ -46,25 +46,37 @@ function Reviews({ product, reviews }) {
       <figure style={{ whiteSpace: "nowrap", display: "flex  " }}>
         {currentReviews[0] ? displayReviews : <p>No reviews yet!</p>}
       </figure>
-      <h5>Add a Review: </h5>
-      <label>
-        Name:
-        <input
-          type="text"
-          name="name"
-          value={reviewerName}
-          onChange={(event) => setReviewName(event.target.value)}
-          autoComplete="off"
-        />
-      </label>
-
-      <Rating
-        name="simple-controlled"
-        value={reviewValue}
-        onChange={(event, newValue) => {
-          handleCreate(newValue);
+      <div
+        className="container"
+        class="container"
+        style={{
+          marginBottom: "10px",
+          borderRadius: "5px",
+          padding: "10px",
+          backgroundColor: "rgb(16 149 193)",
         }}
-      />
+      >
+        <h5>Add a Review: </h5>
+        <label>
+          Name:
+          <input
+            type="text"
+            name="name"
+            value={reviewerName}
+            onChange={(event) => setReviewName(event.target.value)}
+            autoComplete="off"
+            style={{ backgroundColor: "lavender" }}
+          />
+        </label>
+        <p>Rating:</p>
+        <Rating
+          name="simple-controlled"
+          value={reviewValue}
+          onChange={(event, newValue) => {
+            handleCreate(newValue);
+          }}
+        />
+      </div>
     </>
   );
 }
