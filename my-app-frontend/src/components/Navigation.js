@@ -13,7 +13,7 @@ function Navigation() {
           <Link to="/about">About</Link>
         </li>
         <li>
-          <Link to="/shop">Shop</Link>
+          <Link to="/shop">Shop Reviews</Link>
         </li>
       </ul>
     </nav>

@@ -9,7 +9,7 @@ function Shop({ products, onAddProduct }) {
 
   return (
     <div className="container" class="container">
-      <h1>Hat Shop</h1>
+      <h1>Hat Shop Reviews</h1>
       <div
         className="grid"
         class="grid"

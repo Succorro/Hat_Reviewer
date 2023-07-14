@@ -15,8 +15,8 @@ function Home() {
           }}
         />
         <h3>
-          Welcome, If you're looking for great hats at amazing prices. Then
-          you've come to the right place!!
+          Welcome, If you're looking for great hats then you've come to the
+          right place!!
         </h3>
       </header>
     </div>
