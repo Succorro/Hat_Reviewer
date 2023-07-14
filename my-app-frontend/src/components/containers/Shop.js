@@ -1,17 +1,10 @@
 import React from "react";
-import ItemCards from "../shopComponents/ItemCards";
 import NewHat from "../NewHat";
+import ProductCards from "../shopComponents/ProductCards";
 
-function Shop({ items, onNewReview, onAddToCart, onAddProduct }) {
-  const displayItems = items.map((item) => {
-    return (
-      <ItemCards
-        key={item.id}
-        item={item}
-        onNewReview={onNewReview}
-        onAddToCart={onAddToCart}
-      />
-    );
+function Shop({ products, onAddProduct }) {
+  const displayProducts = products.map((product) => {
+    return <ProductCards key={product.id} product={product} />;
   });
 
   return (
@@ -24,7 +17,7 @@ function Shop({ items, onNewReview, onAddToCart, onAddProduct }) {
           gridTemplateColumns: "33% 33% 33%",
         }}
       >
-        {displayItems}
+        {displayProducts}
       </div>
       <NewHat onAddProduct={onAddProduct} />
     </div>

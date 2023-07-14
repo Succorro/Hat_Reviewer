@@ -42,6 +42,7 @@ function NewHat({ onAddProduct }) {
           name="name"
           value={formData.name}
           onChange={handleChange}
+          autoComplete="off"
         />
         <label>Description:</label>
         <input
