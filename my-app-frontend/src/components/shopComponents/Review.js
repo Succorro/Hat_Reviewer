@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Rating } from "@mui/material";
+import { CRUDContext } from "../App";
 
-function Review({ review, onDeleteReview }) {
+function Review({ review }) {
   const { id, name, rating } = review;
-  const [reviewRating, setReviewRating] = useState(rating);
+  const { onDeleteReview, onUpdateReview } = useContext(CRUDContext);
 
   function handleUpdate(updatedValue, id) {
     fetch(`http://localhost:9090/reviews/${id}`, {
@@ -17,7 +18,7 @@ function Review({ review, onDeleteReview }) {
     })
       .then((r) => r.json())
       .then((updatedReview) => {
-        setReviewRating(updatedReview.rating);
+        onUpdateReview(updatedReview);
       });
   }
 
@@ -35,7 +36,7 @@ function Review({ review, onDeleteReview }) {
       <p>Rating:</p>
       <Rating
         name="simple-controlled"
-        value={reviewRating}
+        value={rating}
         onChange={(event, newValue) => {
           handleUpdate(newValue, id);
         }}

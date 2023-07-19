@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Rating from "@mui/material/Rating";
 import Review from "../shopComponents/Review";
+import { CRUDContext } from "../App";
 
 function Reviews({ product, reviews }) {
   const [reviewerName, setReviewName] = useState("");
   const [reviewValue] = useState(0);
-  const [currentReviews, setCurrentReviews] = useState(reviews);
+  const { onCreateReview } = useContext(CRUDContext);
 
   function handleCreate(newValue) {
     fetch(`http://localhost:9090/reviews`, {
@@ -23,28 +24,15 @@ function Reviews({ product, reviews }) {
       .then((newReview) => onCreateReview(newReview));
   }
 
-  function onCreateReview(newReview) {
-    setCurrentReviews([...currentReviews, newReview]);
-  }
-
-  function onDeleteReview(deletedReview) {
-    const filteredReviews = currentReviews.filter(
-      (review) => review.id !== deletedReview.id
-    );
-    setCurrentReviews(filteredReviews);
-  }
-
-  const displayReviews = currentReviews.map((review) => {
-    return (
-      <Review key={review.id} review={review} onDeleteReview={onDeleteReview} />
-    );
+  const displayReviews = reviews.map((review) => {
+    return <Review key={review.id} review={review} />;
   });
 
   return (
     <>
       <h5> Customer Reviews: </h5>
       <figure style={{ whiteSpace: "nowrap", display: "flex  " }}>
-        {currentReviews[0] ? displayReviews : <p>No reviews yet!</p>}
+        {reviews[0] ? displayReviews : <p>No reviews yet!</p>}
       </figure>
       <div
         className="container"
