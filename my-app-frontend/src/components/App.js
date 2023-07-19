@@ -32,13 +32,14 @@ function App() {
   function onCreateReview(newReview) {
     const currentProduct = findProduct(newReview.product_id)[0];
     currentProduct.reviews = [...currentProduct.reviews, newReview];
-    const filteredProducts = products.filter((product) => {
+    const filteredProducts = products.map((product) => {
       if (product.id === currentProduct.id) {
         return currentProduct;
       } else return product;
     });
     setProducts(filteredProducts);
   }
+
   function onUpdateReview(updatedReview) {
     const currentProduct = findProduct(updatedReview.product_id)[0];
     const filteredReviews = currentProduct.reviews.map((review) => {
@@ -46,9 +47,8 @@ function App() {
         return updatedReview;
       } else return review;
     });
-
     currentProduct.reviews = filteredReviews;
-    const filteredProducts = products.filter((product) => {
+    const filteredProducts = products.map((product) => {
       if (product.id === currentProduct.id) {
         return currentProduct;
       } else return product;
@@ -62,7 +62,7 @@ function App() {
       (review) => review.id !== deletedReview.id
     );
     currentProduct.reviews = filteredReviews;
-    const filteredProducts = products.filter((product) => {
+    const filteredProducts = products.map((product) => {
       if (product.id === currentProduct.id) {
         return currentProduct;
       } else return product;
